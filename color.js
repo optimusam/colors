@@ -2,17 +2,21 @@ var blocks = document.querySelectorAll(".square");
 var rField = document.getElementById("r");
 var gField = document.getElementById("g");
 var bField = document.getElementById("b");
-var result = document.querySelector("h2"); //to show wrong or right
+
 var aRed, aBlue, aGreen, red, green, blue; //a<Color> refers to answer color
 var correctColor = Math.floor(Math.random() * 6); // storing correct block number
 var data = []; // to store all the blocks rgb color as objects
-var isCorrect = document.querySelector("h2");
+
+var result  = document.querySelector(".result");
+
 var count=1;
 var f=0;
 var s="";
 var t="";
 var reset = document.querySelector("#reset");
 var num = 0;
+
+
 function changeBackground(tile)
 {
     // generating random colors using Math.random() * (max - min) + min
@@ -57,7 +61,7 @@ for(var i=0 ; i<6; i++)
                 s="You were Lucky!!";
                 t="th try."
             }
-            isCorrect.textContent=s+"You guessed it in "+count+t;
+            result.textContent=s+"You guessed it in "+count+t;
              reset.classList.remove("hide");
             for(var j=0; j<blocks.length; j++)
                 {
@@ -66,7 +70,7 @@ for(var i=0 ; i<6; i++)
         }
         else if(count==5)
         {
-            isCorrect.textContent="You lost !!";
+            result.textContent="You lost !!";
             for(var k=0; k<blocks.length; k++)
                 {
                 blocks[k].style.background=blocks[correctColor].style.background;
@@ -75,7 +79,7 @@ for(var i=0 ; i<6; i++)
         }
         else
         {
-            isCorrect.textContent="Oops! That is wrong...";
+            result.textContent="Oops! That is wrong...";
             this.style.background="white";
             if(f!=1)
                 count++;
@@ -89,3 +93,5 @@ c=data[correctColor].greenVal/s*100;
 rField.textContent=Math.round(a);
 bField.textContent=Math.round(b);
 gField.textContent=Math.round(c);
+
+console.log(data)
